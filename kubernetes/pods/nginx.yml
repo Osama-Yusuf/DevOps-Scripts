@@ -1,0 +1,13 @@
+apiversion: v1 # API version
+kind: Pod # Kind of object
+metadata:
+  name: my-pod # Name of the object
+  namespace: default # Namespace of the object
+spec:
+  containers:
+    - name: my-container # Name of the container
+      image: nginx # Image of the container
+      ports:
+        - containerPort: 80 # Port of the container
+          protocol: TCP # Protocol of the port
+  restartPolicy: Always # Restart policy of the pod

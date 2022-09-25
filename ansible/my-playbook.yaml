@@ -1,0 +1,30 @@
+---
+# - name: Install & start nginx service
+#   hosts: webserver
+#   tasks:
+#     - name: Install nginx server
+#       become: yes
+#       apt:
+#         name: nginx
+#         state: latest
+#         update_cache: yes
+#     - name: start nginx server
+#       become: yes
+#       service:
+#         name: nginx
+#         state: started
+
+- name: Stop & unInstall nginx service
+  hosts: webserver
+  tasks:
+    - name: stop nginx server
+      become: yes
+      service:
+        name: nginx
+        state: stopped
+    - name: unInstall nginx server
+      become: yes
+      apt:
+        name: nginx
+        state: absent
+        update_cache: yes

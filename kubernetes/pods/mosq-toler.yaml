@@ -1,0 +1,17 @@
+# create pod with nginx image and pod name mosquit
+apiVersion: v1
+kind: Pod
+metadata:
+  name: mosquitto
+spec:
+  containers:
+    - name: mosquitto
+      image: nginx
+      ports:
+        - containerPort: 8085
+          protocol: TCP
+  tolerations:
+    - key: spray
+      value: mortein
+      effect: NoSchedule
+      operator: Equal

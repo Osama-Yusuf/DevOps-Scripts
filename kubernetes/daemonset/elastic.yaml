@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: elasticsearch
+  namespace: kube-system
+  labels:
+    k8s-app: fluentd-logging
+spec:
+  selector:
+    matchLabels:
+      name: elasticsearch-label
+  template:
+    metadata:
+      labels:
+        name: elasticsearch-label
+    spec:
+      containers:
+        - name: elasticsearch-cont
+          image: k8s.gcr.io/fluentd-elasticsearch:1.20

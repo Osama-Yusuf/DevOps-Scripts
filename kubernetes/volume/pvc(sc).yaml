@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: pvc-name
+spec: 
+  accessModes:
+    - ReadWriteOnce
+  resources: # Resources required by the volume
+    requests:
+      storage: 10Gi
+  storageClassName: storage-class-name # as in sc.yaml name in metadata

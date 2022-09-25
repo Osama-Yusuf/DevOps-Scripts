@@ -1,0 +1,64 @@
+---
+- name: Install node and npm
+  become: yes
+  hosts: webserver
+  tasks:
+    - name: Update apt repo and cache
+      # apt: update_cache=yes force_apt_get=yes cache_valid_time=3600
+      apt: # apt-get update
+        update_cache: yes
+        force_apt_get: yes
+        cache_valid_time: 3600
+
+    - name: Install nodejs and npm
+      become: yes
+      apt:
+        pkg: # to install a list of packages
+          - nodejs
+          - npm
+
+- name: Create new linux user for node app
+  become: yes
+  hosts: webserver
+  tasks:
+    - name: Create linux user
+      user:
+        name: osama9mo
+        comment: osama9mo Admin
+        group: admin
+
+- name: Deploy nodejs app
+  hosts: webserver
+
+  # become: yes
+  # become_user: osama
+  become: True
+  become_user: osama9mo
+  tasks:
+    # - name: Copy nodejs folder to a server
+    #   copy:
+    #     src: /home/osama-yusuf/aws/nodejs-app/nodejs-app-1.0.0.tgz
+    #     dest: /home/ubuntu/app-1.0.0.tgz
+    # - name: Unpack the nodejs tar file
+    #   unarchive:
+    #     src: /home/ubuntu/app-1.0.0.tgz
+    #     dest: /home/ubuntu/
+    #     remote_src: yes
+    - name: Unpack the nodejs tar file
+      unarchive:
+        src: /home/osama-yusuf/aws/nodejs-app/nodejs-app-1.0.0.tgz
+        dest: /home/osama9mo/
+    - name: Install dependencies
+      # community.general.npm is more recommended
+      npm:
+        path: /home/osama9mo/package
+    - name: Start the app
+      command:
+        chdir: /home/osama9mo/package/app
+        cmd: node server
+      async: 1000
+      poll: 0
+    - name: Ensure app is running
+      shell: ps aux | grep node
+      register: app_status
+    - debug: msg={{app_status.stdout_lines}}

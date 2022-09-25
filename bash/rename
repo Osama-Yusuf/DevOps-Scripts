@@ -1,0 +1,12 @@
+# ------------------------- how to rename multi files ------------------------ #
+# enter the folder you want to remove the first 8 characters from the file names (for ex.)
+# cd /home/osama/Downloads
+# for file in *; do echo mv "$file" "$(echo "$file" | cut -c8-)"; done > test.sh && bash test.sh && rm -f test.sh
+# ---------------------------------------------------------------------------- #
+
+# ------------------------------ another method ------------------------------ #
+# sudo apt install -y rename
+# rename s/"**TO-BE-REPLACED**"/"**REPLACEMENT**"/g *
+# for ex the following the command will remove ".svg" from all files in the current directory
+# rename s/".svg"/""/g *
+# ---------------------------------------------------------------------------- #

@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: mypod
+spec:
+  containers:
+    - name: myfrontend
+      image: nginx
+      command:
+        - sleep
+        - "3600"
+      volumeMounts:
+        - name: myvolume
+          mountPath: "/var/www/html"
+  volumes: # Volumes are mounted into the pod
+    - name: myvolume
+      persistentVolumeClaim:
+        claimName: pvc-name # as in pvc.yaml name in metadata
