@@ -1,0 +1,19 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: my-cronjob
+spec:
+  # run every minute 
+  schedule: "*/1 * * * *"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+          - name: print
+            image: busybox:stable
+            command: ["echo", "Hello World"]
+          restartPolicy: Never
+      backoffLimit: 4
+      # the following command may cause an error if so comment it or use --validate=false after kubectl apply
+      activeDeadlineSeconds: 10

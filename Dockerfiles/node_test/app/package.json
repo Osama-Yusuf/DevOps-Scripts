@@ -1,0 +1,13 @@
+{
+  "name": "docker-test-app",
+  "version": "0.0.0",
+  "description": "DockerTestApp",
+  "main": "server.js",
+  "author": {
+    "name": ""
+  },
+  "dependencies": {
+    "express": "^4.17.1",
+    "mongodb": "^3.6.3"
+  }
+}

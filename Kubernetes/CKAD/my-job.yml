@@ -1,0 +1,15 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: my-job
+spec:
+  backoffLimit: 4
+  # the following command may cause an error if so comment it or use --validate=false after kubectl apply
+  ativeDeadlineSeconds: 10
+  template:
+    spec:
+      containers:
+      - name: print
+        image: busybox:stable
+        command: ["echo", "Hello World"]
+      restartPolicy: Never
