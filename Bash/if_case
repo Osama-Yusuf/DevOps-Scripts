@@ -1,0 +1,15 @@
+car="BMW"
+case $car in 
+    Toyota)
+        echo "It's Toyota"
+        ;;
+    Honda)
+        echo "It's Honda"
+        ;;
+    BMW)
+        echo "It's BMW"
+        ;;
+    *)
+        echo "Hmm, seems like another car"
+        ;;
+esac
