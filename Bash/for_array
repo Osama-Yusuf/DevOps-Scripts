@@ -1,0 +1,20 @@
+#!/bin/bash
+
+<<//
+car=($*)
+
+for i in "${car[@]}"; do
+    echo $i
+done
+//
+
+echo "Enter input to put in array: "
+read -a arrayVar
+
+echo
+echo "The the given input are as the following: "
+echo
+
+for i in "${arrayVar[@]}"; do
+    echo $i
+done

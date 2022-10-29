@@ -1,5 +1,8 @@
-car="BMW"
-case $car in 
+<<//
+# car="BMW"
+
+case $1 in 
+# case $car in 
     Toyota)
         echo "It's Toyota"
         ;;
@@ -13,3 +16,32 @@ case $car in
         echo "Hmm, seems like another car"
         ;;
 esac
+//
+
+chc='Please choose a car company:'
+
+cars=("BMW" "Honda" "Toyota" "Quit")
+
+# count the number of elements in the array
+num_cars=${#cars[@]}
+
+select car in "${cars[@]}";
+do
+    case $car in
+        "BMW")
+            echo "You chose BMW"
+            ;;
+        "Honda")
+            echo "You chose Honda"
+            ;;
+        "Toyota")
+            echo "You chose Toyota"
+            ;;
+        "Quit")
+            break
+            ;;
+        *)
+            echo "Wrong selection: Select any number from 1-$num_cars"
+            ;;
+    esac
+done
