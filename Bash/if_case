@@ -18,7 +18,7 @@ case $1 in
 esac
 //
 
-chc='Please choose a car company:'
+echo 'Please choose a car company: '
 
 cars=("BMW" "Honda" "Toyota" "Quit")
 
